@@ -7,6 +7,7 @@ import { useRef, useEffect } from "react";
 
 export default function KanbanColumn({ title, tasks, onDrop }: any) {
   const divRef = useRef<HTMLDivElement>(null);
+  // console.log(tasks);
 
   const [, drop] = useDrop({
     accept: "CARD",

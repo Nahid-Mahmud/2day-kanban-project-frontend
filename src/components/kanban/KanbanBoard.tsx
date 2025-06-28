@@ -17,17 +17,28 @@ export default function KanbanBoard() {
   const [columns, setColumns] = useState<Columns>(initialData);
 
   const handleDrop = (toColumn: string, taskId: string) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const task = Object.entries(columns).flatMap(([col, tasks]) => tasks.filter((t) => t.id === taskId))[0];
+    const task = Object.values(columns)
+      .flat()
+      .find((t) => t.id === taskId);
+    // console.log(Object.values(columns).flat());
 
     if (!task) return;
 
     const newColumns = { ...columns };
-    for (const col in newColumns) {
+    Object.keys(newColumns).forEach((col) => {
       newColumns[col] = newColumns[col].filter((t) => t.id !== taskId);
-    }
+    });
     newColumns[toColumn].push(task);
     setColumns(newColumns);
+
+    console.log(
+      Object.keys(newColumns).forEach((clg) => {
+        console.log(
+          clg,
+          newColumns[clg].filter((t) => t.id === taskId)
+        );
+      })
+    );
   };
 
   return (

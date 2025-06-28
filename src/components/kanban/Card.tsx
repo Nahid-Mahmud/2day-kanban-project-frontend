@@ -3,7 +3,7 @@
 import { useDrag } from "react-dnd";
 
 export default function Card({ id, content }: { id: string; content: string }) {
-  const [{ isDragging }, dragRef,] = useDrag({
+  const [{ isDragging }, dragRef] = useDrag({
     type: "CARD",
     item: { id },
     collect: (monitor) => ({
